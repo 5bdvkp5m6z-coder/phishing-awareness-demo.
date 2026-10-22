@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fatai App Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
+    .login-box {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      width: 85%;
+      max-width: 340px;
+      text-align: center;
+      box-shadow: 0 4px 20px #00000015;
+    }
+
+    .logo {
+      width: 95px;
+      height: 95px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #e8edff;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: #2548a8;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 13px;
+      margin: 9px 0;
+      border: 1px solid #ccc;
+      border-radius: 9px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 12px;
+      background: #2548a8;
+      color: white;
+      border: none;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    #message {
+      color: #2548a8;
+      margin-top: 16px;
+    }
+
+    .notice {
+      font-size: 12px;
+      color: #777;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+<body>
+  <main class="login-box">
+    <img
+      id="logo"
+      class="logo"
+      alt="Fatai App demo logo"
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' rx='50' fill='%232548a8'/%3E%3Ctext x='50' y='62' font-size='36' text-anchor='middle' fill='white' font-family='Arial'%3EF%3C/text%3E%3C/svg%3E"
+    >
+
+    <h1>Fatai App</h1>
+    <p>Practice login demonstration</p>
+
+    <label for="logoUpload">Choose a logo image:</label>
+    <input type="file" id="logoUpload" accept="image/*">
+
+    <form id="demoForm">
+      <input
+        type="text"
+        placeholder="Demo username"
+        aria-label="Demo username"
+        autocomplete="off"
+        required
+      >
+
+      <input
+        type="password"
+        placeholder="Demo password"
+        aria-label="Demo password"
+        autocomplete="off"
+        required
+      >
+
+      <button type="submit">Try Demo Login</button>
+    </form>
+
+    <div id="message" role="status"></div>
+
+    <p class="notice">
+      Educational demo only. Never enter a real password.
+      Nothing you type is sent or stored.
+    </p>
+  </main>
+
+  <script>
+    document.getElementById("logoUpload").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file && file.type.startsWith("image/")) {
+        document.getElementById("logo").src = URL.createObjectURL(file);
+      }
+    });
+
+    document.getElementById("demoForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      this.reset();
+      document.getElementById("message").textContent =
+        "Demo complete! No login details were sent or saved.";
+    });
+  </script>
+</body>
+</html>
